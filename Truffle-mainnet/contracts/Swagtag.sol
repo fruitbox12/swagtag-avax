@@ -10,7 +10,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
 
-contract Swagtag is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract Cryptotags is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
     CountersUpgradeable.Counter private _tokenIdCounter;
@@ -25,7 +25,7 @@ contract Swagtag is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeabl
     constructor() initializer {}
 
     function initialize() initializer public {
-        __ERC721_init("swagtag", "SWG");
+        __ERC721_init("cryptotags", "TAG");
         __ERC721Enumerable_init();
         __ERC721URIStorage_init();
         __Ownable_init();
@@ -33,7 +33,7 @@ contract Swagtag is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeabl
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://domains.avax.ga/";
+        return "https://openseauserdata.com/files/8dc6480752afecb6818598a1f0b19949.svg";
     }
 
     function safeMint(address to, string memory uri) public onlyOwner {
@@ -78,7 +78,7 @@ contract Swagtag is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeabl
         returns (uint256)
     {
         _tokenIdCounter.increment();
-        require( !(_names[_name]>0), "Token already exists" );
+        require( !(_names[_name]>0), "Tag already exists" );
         uint256 newItemId = _tokenIdCounter.current();
         _mint(msg.sender, newItemId);
         _id_to_name[newItemId] = _name;
